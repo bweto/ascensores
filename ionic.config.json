@@ -1,5 +1,7 @@
 {
   "name": "acensores",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }

@@ -1,1 +1,75 @@
+.div-size{
+  width: 70px;
+  height: 70px;
+  background-color: crimson;
+  
+}
+.icon-size{
+  width: 10px;
+  height: 10px;
+}
+.rotate{
+  transform:rotate(-45deg);
+}
+.icon-rotate{
+  transform:rotate(45deg);
+}
+.center {
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+}
+.max-height{
+  height: 100%;
+  width: 100%;
+  padding-top: 45%;
+}
+.container{
+  display:flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-items: center;
+  align-items: center;
+}
 
+.item{
+  align-self: center;
+  justify-self: center;
+}
+.pl-2{
+  padding-left: 2.2em;
+}
+.pr-2{
+  padding-right: 2.2em;
+}
+.color-user{
+  background-color: #0894A1;
+}
+.color-acensor{
+  background-color: #47AB6C;
+}
+.color-escaleras{
+  background-color: #F2B134
+} 
+.color-puertas{
+  background-color: #BA302A;
+}
+.shadow{
+  box-shadow: 2px 2px white;
+}
+.flex-container{
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
+
+ion-button {
+  --ripple-color: rgba(255, 255, 255,0) !important;
+  --transition: none !important;
+}
+
+@media all and (orientation: landscape) { 
+  .max-height{ 
+   padding-top: 0 !important; 
+  }                                                                                     
+}

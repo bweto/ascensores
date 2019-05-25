@@ -1,14 +1,67 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>
-      Ionic Blank
-    </ion-title>
+<ion-header mode="md" translucent="true" no-border>
+  <ion-toolbar color="dark">
+    <ion-icon name="today" slot="start" size="large"></ion-icon>
+    <ion-title slot="start">Reportes</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-  <div class="ion-padding">
-    The world is your oyster.
-    <p>If you get lost, the <a target="_blank" rel="noopener" href="https://ionicframework.com/docs/">docs</a> will be your guide.</p>
+<ion-content color="dark" fullscreen="true">
+  <div class="max-height container">
+    <ion-grid class="container">
+      <ion-row>
+        <ion-col>
+            <ion-buttons>
+              <ion-button (click)="goDatosGenerales()"
+              class="div-size color-user shadow rotate flex-container"
+              >
+                <ion-icon
+                  name="contacts"
+                  size="large"
+                  class=" icon-rotate "
+                ></ion-icon>
+              </ion-button>
+            </ion-buttons>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col class="pr-2" > 
+            <ion-buttons class="div-size color-acensor shadow rotate flex-container">
+              <ion-button>
+                <ion-icon
+                  src="../../assets/icon/elevador.svg"
+                  size="large"
+                  class=" icon-rotate "
+                ></ion-icon>
+              </ion-button>
+            </ion-buttons>
+        </ion-col>
+        <ion-col class="pl-2">
+            <ion-buttons class="div-size color-escaleras shadow rotate flex-container">
+              <ion-button>
+                <ion-icon
+                  src="../../assets/icon/escalera.svg"
+                  size="large"
+                  class=" icon-rotate "
+                ></ion-icon>
+              </ion-button>
+            </ion-buttons>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col >
+            <ion-buttons class="div-size color-puertas shadow rotate flex-container">
+              <ion-button>
+                <ion-icon
+                  src="../../assets/icon/puerta.svg"
+                  size="large"
+                  class=" icon-rotate "
+                ></ion-icon>
+              </ion-button>
+            </ion-buttons>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
   </div>
 </ion-content>
