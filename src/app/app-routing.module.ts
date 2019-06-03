@@ -7,6 +7,9 @@ const routes: Routes = [
   { path: 'datos-generales', loadChildren: './datos-generales/datos-generales.module#DatosGeneralesPageModule' },
   { path: 'add-datos-generales', loadChildren: './add-datos-generales/add-datos-generales.module#AddDatosGeneralesPageModule' },
   { path: 'add-datos-generales:id', loadChildren: './add-datos-generales/add-datos-generales.module#AddDatosGeneralesPageModule' },
+  { path: 'pregunta', loadChildren: './pregunta/pregunta.module#PreguntaPageModule' },
+  { path: 'pregunta/:id', loadChildren: './pregunta/pregunta.module#PreguntaPageModule' },
+  { path: 'puerta', loadChildren: './puerta/puerta.module#PuertaPageModule' },
 ];
 
 @NgModule({
