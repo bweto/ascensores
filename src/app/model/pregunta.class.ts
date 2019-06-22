@@ -1,9 +1,9 @@
 export class Pregunta {
 
-    pregunta: string;
-    respuesta: string;
-    rutaImagen: any;
-    obserevaciones: string;
+    public pregunta: string;
+    public respuesta: string;
+    public rutaImagen: string;
+    public obserevaciones: string;
 
     constructor(pregunta: string) {
         this.pregunta = pregunta;

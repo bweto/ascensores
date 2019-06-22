@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Pregunta } from '../model/pregunta.class';
 import { Storage } from '@ionic/storage';
 import { ToastController } from '@ionic/angular';
+import { SQLite, SQLiteObject } from '@ionic-native/sqlite/ngx';
 @Injectable({
   providedIn: 'root'
 })
@@ -127,7 +128,9 @@ export class PuertasService {
   ]
 
   constructor(public toastController: ToastController,
-              public storage: Storage) {}
+              public storage: Storage,
+              private sqldb: SQLite) {}
+
   get getFotos() {
     return this.fotos;
   }
@@ -162,14 +165,17 @@ export class PuertasService {
   getElementosMecanicosById(id: number) {
     return this.elementosMecanicos[id];
   }
+
   setObservaciones(observacion: string) {
     this.observaciones = observacion;
     this.presentToast('Se almaceno la observación', 'success');
   }
+
   setResultadosInspeccion(resultadoInspeccion: any[]) {
     this.resultadosInspeccion = resultadoInspeccion;
     this.presentToast('Se almaceno los resultados de la inspección', 'success');
   }
+
   setObjetoPregunta(categoria: string, elemento: Pregunta, index: number ) {
     switch (categoria) {
       case 'Elementos Mecanicos':
@@ -205,4 +211,6 @@ export class PuertasService {
       this.fotos = fotos || [];
     });
   }
+
+
 }
