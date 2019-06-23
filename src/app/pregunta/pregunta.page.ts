@@ -3,8 +3,8 @@ import { PuertasService } from './../services/puertas.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
-import { Storage } from '@ionic/storage';
-
+import { Base64 } from '@ionic-native/base64/ngx';
+import { PuertaRepository } from '../model/puerta.repository';
 @Component({
   selector: 'app-pregunta',
   templateUrl: './pregunta.page.html',
@@ -14,23 +14,23 @@ export class PreguntaPage implements OnInit {
 
   fotos: any[];
   idPregunta: number;
+  idMostrar: number;
   preguntaPuerta: Pregunta;
   categoria: string;
-  foto: string = '';
+  foto = '';
   constructor(private activatedRoute: ActivatedRoute,
-              private puertasService: PuertasService,
+              private dataPuerta: PuertaRepository,
               private camera: Camera,
-             // private storage: Storage
+              private base64: Base64
              ) {}
 
   ngOnInit() {
-    this.puertasService.cargarFotosGrabadas();
-    this.idPregunta = 0;
     this.idPregunta = this.activatedRoute.snapshot.params.idElementoMecanico;
+    this.idMostrar = this.idPregunta;
+    this.idMostrar ++;
     this.categoria = this.activatedRoute.snapshot.params.categoria;
     this.preguntaPuerta = new Pregunta('');
-    this.preguntaPuerta = this.puertasService.getElementosMecanicosById(this.idPregunta);
-    this.fotos = this.puertasService.getFotos;
+    this.preguntaPuerta = this.dataPuerta.getPreguntaById(this.idPregunta , this.categoria);
   }
 
   elegirRespuesta(event: any) {
@@ -40,22 +40,25 @@ export class PreguntaPage implements OnInit {
   tomarFoto() {
     const opciones: CameraOptions = {
       quality: 100,
-      destinationType: this.camera.DestinationType.DATA_URL,
+      destinationType: this.camera.DestinationType.FILE_URI,
       encodingType: this.camera.EncodingType.JPEG,
       mediaType: this.camera.MediaType.PICTURE,
       saveToPhotoAlbum: true
     };
-
     this.camera.getPicture(opciones)
     .then((imageData) => {
-      this.preguntaPuerta.rutaImagen = 'data:image/jpeg;base64,' + imageData;
+      this.preguntaPuerta.rutaImagen = imageData;
+      this.base64.encodeFile(this.preguntaPuerta.rutaImagen)
+        .then((imgBase64: string) => {
+          this.foto = imgBase64;
+        });
     }, (err) => {
-     // Handle error
      console.log('Camera issue:' + err);
     });
   }
 
   guardarObjetoPregunta() {
-    this.puertasService.setObjetoPregunta(this.categoria, this.preguntaPuerta, this.idPregunta);
+    this.dataPuerta.setRespuesta(this.categoria, this.preguntaPuerta, this.idPregunta);
   }
+
 }

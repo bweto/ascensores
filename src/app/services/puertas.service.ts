@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Pregunta } from '../model/pregunta.class';
-import { Storage } from '@ionic/storage';
 import { ToastController } from '@ionic/angular';
-import { SQLite, SQLiteObject } from '@ionic-native/sqlite/ngx';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -127,9 +126,7 @@ export class PuertasService {
 
   ]
 
-  constructor(public toastController: ToastController,
-              public storage: Storage,
-              private sqldb: SQLite) {}
+  constructor(public toastController: ToastController ) {}
 
   get getFotos() {
     return this.fotos;
@@ -204,12 +201,6 @@ export class PuertasService {
       duration: 1500
     });
     toast.present();
-  }
-
-  cargarFotosGrabadas() {
-    this.storage.get('fotos').then((fotos) => {
-      this.fotos = fotos || [];
-    });
   }
 
 

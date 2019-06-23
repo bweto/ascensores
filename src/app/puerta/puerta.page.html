@@ -34,7 +34,8 @@
                         rows="6"
                         autofocus="true"
                         spellcheck="true"
-                        (ionBlur)="grabarObservaciones($event)">
+                        [(ngModel)]="observaciones"
+                        >
           </ion-textarea>
       </ion-card-content>
   </ion-card>
@@ -66,4 +67,5 @@
   </ion-grid>   
 
   </ion-card>
+  
 </ion-content>

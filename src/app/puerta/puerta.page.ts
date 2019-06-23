@@ -3,6 +3,7 @@ import { PuertasService } from './../services/puertas.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Pregunta } from '../model/pregunta.class';
 import { IonSegment } from '@ionic/angular';
+import { PuertaRepository } from '../model/puerta.repository';
 @Component({
   selector: 'app-puerta',
   templateUrl: './puerta.page.html',
@@ -22,6 +23,7 @@ export class PuertaPage implements OnInit {
     'Resultados inspección'
   ];
   constructor(private preguntasPuerta: PuertasService,
+              private dataPuerta: PuertaRepository,
               private router: Router
     ) { }
 
@@ -29,21 +31,23 @@ export class PuertaPage implements OnInit {
     this.segment.value = this.categorias[0];
     this.cargarCategoria(this.categorias[0]);
   }
+
   abrirPregunta(idElementoMecanico: number) {
     this.router.navigate(['/pregunta', {idElementoMecanico}]);
   }
+
   cambioCategoria(event) {
     this.elementos = [];
     this.observaciones = '';
     this.resultadosInspeccion = [];
-    console.log('Estoy en cambiar categoria', event.detail.value);
     this.cargarCategoria(event.detail.value);
   }
+
   cargarCategoria(categoria: string) {
     switch (categoria) {
       case 'Observaciones':
         this.observaciones = '';
-        this.observaciones = this.preguntasPuerta.getObservaciones();
+        this.observaciones = this.dataPuerta.getObservaciones();
         break;
       case 'Resultados inspección':
         this.resultadosInspeccion = [];
@@ -54,9 +58,11 @@ export class PuertaPage implements OnInit {
         this.elementos = this.preguntasPuerta.getDataCategoria(categoria);
     }
   }
+
   grabarObservaciones(event) {
     this.preguntasPuerta.setObservaciones(event.target.textContent);
   }
+
   GrabarResultado() {
     this.preguntasPuerta.setResultadosInspeccion(this.resultadosInspeccion);
   }

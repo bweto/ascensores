@@ -10,8 +10,7 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { Camera } from '@ionic-native/camera/ngx';
-import { SQLite, SQLiteObject } from '@ionic-native/sqlite/ngx';
-import { IonicStorageModule } from '@ionic/storage';
+import { Base64 } from '@ionic-native/base64/ngx';
 import {
   MatInputModule,
   MatPaginatorModule,
@@ -23,16 +22,13 @@ import {
   MatCardModule,
   MatFormFieldModule } from '@angular/material';
 import { ComponentesModule } from './components/componentes/componentes.module';
+import { DataModule } from './model/data.module';
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
   imports: [BrowserModule,
             IonicModule.forRoot(),
             AppRoutingModule,
-            IonicStorageModule.forRoot({
-              name: 'fotos',
-              driverOrder: ['sqlite']
-            }),
             BrowserAnimationsModule,
             MatInputModule,
             MatPaginatorModule,
@@ -44,13 +40,14 @@ import { ComponentesModule } from './components/componentes/componentes.module';
             MatCardModule,
             MatFormFieldModule,
             ComponentesModule,
+            DataModule
           ],
   providers: [
     StatusBar,
     SplashScreen,
     Camera,
-    SQLite,
-    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
+    Base64,
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
   ],
   bootstrap: [AppComponent]
 })

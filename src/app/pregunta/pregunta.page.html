@@ -3,7 +3,7 @@
     <ion-buttons slot="start">
       <ion-back-button defaultHref="puerta"></ion-back-button>
     </ion-buttons>
-    <ion-title>pregunta {{idPregunta + 1}} </ion-title>
+    <ion-title>pregunta {{idMostrar}} </ion-title>
     <ion-buttons slot="end">
         <ion-button (click)="guardarObjetoPregunta()">
           <ion-icon slot="icon-only" name="save"></ion-icon>
@@ -15,7 +15,7 @@
 <ion-content >
   <ion-card >
       <ion-card-header >
-          <ion-card-title >{{preguntaPuerta.pregunta}}</ion-card-title>
+          <ion-card-title>{{preguntaPuerta.pregunta}}</ion-card-title>
         </ion-card-header>
         <ion-segment (ionChange)="elegirRespuesta($event)">
             <ion-segment-button value="cumple">
@@ -33,10 +33,10 @@
       <ion-card-header>
           <ion-card-title>Fotografia</ion-card-title>
         </ion-card-header>
-      <ion-img [src]="preguntaPuerta.rutaImagen" 
+      <ion-img [src]="foto" 
                *ngIf="preguntaPuerta.rutaImagen"
                [(ngModel)]="preguntaPuerta.rutaImagen"
-               ></ion-img> 
+               ></ion-img>
       <ion-button expand="full" color="primary"
                   (click)="tomarFoto()"> 
         <ion-icon name="camera" slot="icon-only"></ion-icon>
@@ -50,6 +50,7 @@
                       placeholder="Agrega tus observaciones ..."
                       rows="6"
                       value={{preguntaPuerta.obserevaciones}}
+                      [(ngModel)]="preguntaPuerta.obserevaciones"
                       spellcheck="true">
 
         </ion-textarea>
